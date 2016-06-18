@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Django Menu</title>
+		<meta charset="utf-8">
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<style>
+		.head-wrapper{
+			background: #272822;
+			padding:2% 0 3% 1%;
+		}
+		.container{
+			padding: 3% 10% 3% 10%;
+			background:#f8f8f2; 
+			height:600px;
+			align-content: center;
+		}
+		h1{
+			color:#f9266e;
+			font-family: 'Open Sans', sans-serif;
+			padding-left: 2%;
+		}
+		p{
+			font-size: 1em;
+			font-family: 'Open Sans', sans-serif;
+			color:#23241e;
+		}
+		.tb-content{
+			padding-left: 6%;
+		}
+		.wrapper{
+			padding: 0 0 0 0;
+			margin: 0 0 0 0;
+		}
+		.row{
+			*zoom:1;
+			width:100%;
+			padding: 0 15% 0 15%;
+		}
+		.row::before,.row::after{
+			content: " ";
+			display: none;
+		}
+		.row::after{
+			clear: both;
+		}
+		.col{
+			float: left;
+			height:30px;
+			width:120px;
+		}
+		.col p{
+			font-size: 1em;
+			font-family: 'Open Sans', sans-serif;
+			color:#23241e;
+			margin: 1% 0 1% 0;			
+		}
+		footer{
+			color: #272822;
+			padding: 2% 0 2% 2%;
+			background:#f9266e;
+		}
+		hr{
+			margin-top: 3%;
+			clear:both;
+			border-color:#ccc;
+		}
+		</style>
+	</head>
+	<body class="wrapper">
+		<header class="head-wrapper">
+			<h1>Menu</h1>
+		</header>
+		<section class="container">
+			<p>Welcome to the humble malaysia restaurant, there are over {{ foods|length }} dishes available</p>
+			<div class="row">
+				<div class="col"><p> Name  </p></div>
+				<div class="col"><p> Price   </p></div>
+				<div class="col"><p> Comment </p></div>
+				<div class="col"><p> Spicy?</p></div>
+			</div>
+			<hr>
+			{% for food in foods %}
+			<div class="row">
+				<div class="col"><p> {{ food.name }}  </p></div>
+				<div class="col"><p> {{food.price}}   </p></div>
+				<div class="col"><p> {{food.comment}} </p></div>
+				<div class="col"><p> {{food.is_spicy}}</p></div>
+			</div>
+			<hr>
+			{% endfor %}
+			</table>
+		</section>
+		<footer> copyright 2016 Ecome</footer>
+	</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Django Menu</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<style>
+		.head-wrapper{
+			background: #272822;
+			padding:2% 0 3% 1%;
+		}
+		.container{
+			margin-top: 10%;
+		}
+		h1{
+			color:#f9266e;
+			font-family: 'Open Sans', sans-serif;
+			padding-left: 2%;
+		}
+		p{
+			font-size: 1.5em;
+			color:#23241e;
+			font-family: 'Open Sans', sans-serif;
+		}
+		.wrapper{
+			background:#f8f8f2; 
+			padding: 0 0 0 0;
+			margin: 0 0 0 0;
+		}
+		.restaurant{
+			padding: 10% 0 5% 0;
+		}
+		.comment{
+			padding-left: 10%;
+			width:200px;
+		}
+		.price{
+			padding-left: 2%;
+			width:40px;
+		}
+		footer{
+			color: #272822;
+			padding: 2% 50% 2% 2%;
+			margin-top: 10%;
+			background:#f9266e;
+		}
+		</style>
+	</head>
+	<body class="wrapper ">
+		<header class="head-wrapper">
+			<h1>Menu</h1>
+		</header>
+		<section class="container">
+		{% for r in restaurants %}
+				<h2>Welcome to the {{r.name}}</h2>
+				{% if r.food_set.all %}
+					<p>there are over {{ r.food_set.all|length }} dishes available</p>
+				<table class="table">
+					<tr>
+						<th ><p> Name  </p></th>
+						<th class="price"><p> Price   </p></th>
+						<th class="comment"><p> Comment </p></th>
+						<th ><p> Spicy?</p></th>
+					</tr>
+					{% for food in r.food_set.all %}
+					<tr>
+						<td ><p> {{ food.name }}  </p></td>
+						<td class=" price"><p> {{food.price}}   </p></td>
+						<td class=" comment"><p> {{food.comment}} </p></td>
+						<td ><p> {% if food.is_spicy %}spicy{% else %}not spicy{% endif %}</p></td>
+					</tr>
+					{% endfor %}
+				</table>
+				{% else %}
+				<p>Our menu are currently empty</p>
+				{% endif %}
+		{% endfor %}
+		</section>
+		<footer> copyright 2016 Ecome</footer>
+	</body>
+</html>
